@@ -11,6 +11,8 @@ class BookOcrLogger:
         self.log_dir = Path(log_dir)
         self.log_dir.mkdir(exist_ok=True)
         
+        log_file = self.log_dir / f"{name}.log"
+        
         # Create Logger
         self.logger = logging.getLogger(name)
         self.logger.setLevel(logging.DEBUG)
@@ -31,7 +33,7 @@ class BookOcrLogger:
         )
         
         # File Handler - detailed logs
-        log_file = self.log / f"simple_formatter = logging.Formatter(fmt='%(asctime)s | %(levelname)8s | %(message)s',datefmt='%H:%M:%S')"
+        log_file = self.log_dir / f"{name}.log"
         file_handler = logging.FileHandler(log_file, encoding='utf-8')
         file_handler.setLevel(logging.DEBUG)
         file_handler.setFormatter(detailed_formatter)
